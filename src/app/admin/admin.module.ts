@@ -3,15 +3,28 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { IndexComponent } from './index/index.component';
+import { HomeComponent } from './home/home.component';
+import { TransferComponent } from './transfer/transfer.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+    HomeComponent,
+    TransferComponent,
+    WithdrawComponent,
+    DepositComponent,
+    CreateAccountComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule
+  ],
+  exports: [
+    IndexComponent
   ]
 })
 export class AdminModule { }
