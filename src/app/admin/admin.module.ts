@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { IndexComponent } from './index/index.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +21,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     IndexComponent
