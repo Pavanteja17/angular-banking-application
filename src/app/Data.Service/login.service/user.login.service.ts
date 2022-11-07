@@ -16,8 +16,8 @@ export class UserLoginService {
     }
   ]
 
-  addUser(uname:string,pass:string){
-    this.users.push({userName:uname,password:pass});
+  addUser(user:IloginUsers){
+    this.users.push(user);
     console.log("user added");
     
   }
