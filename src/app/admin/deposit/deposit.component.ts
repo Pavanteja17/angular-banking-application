@@ -14,11 +14,7 @@ export class DepositComponent implements OnInit {
 
   mailid:any;
   withdrawAmount:number = 0;
-  balanceVal:any;
-  remain:number | undefined;
-  withDrawForm:any =  FormGroup
-  selectFormControl = new FormControl('', Validators.required);
-   public accountData: any;
+  balanceVal:any = 0;
   constructor(private userService : UserService) { }
 
   ngOnInit(){

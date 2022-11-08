@@ -13,7 +13,7 @@ export class WithdrawComponent implements OnInit {
   public users:Iuser[]=[];
   mailid:any;
   withdrawAmount:number = 0;
-  balanceVal:any;
+  balanceVal:any = 0;
   constructor(private userService : UserService) { }
 
   ngOnInit(){

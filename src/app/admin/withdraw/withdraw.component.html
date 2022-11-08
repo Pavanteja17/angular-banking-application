@@ -3,22 +3,31 @@
       <h3 class="card-title" style="font-weight: bold;">Withdraw</h3>
       <br>
       <h6 class="card-subtitle mb-2 text-muted">Select an account to withdraw money from</h6>
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #withdrawForm="ngForm"novalidate>
         <div class="form-group">
             <label for="account">ACCOUNT</label>
             <select  #myselect required   class="form-control " (change)="onAccountChange(myselect.value)" >
-               <option selected>Select option</option>
+               <option selected>Select account to withdraw</option>
                 <option [value]="user.email" *ngFor="let user of users"   >{{user.email}}</option>
                 
               </select>
 
             <label for="balance">CURRENT BALANCE</label>
-            <input type="text" class="form-control" id="balance" [value]="balanceVal"  >
+            <input type="text" class="form-control" id="balance" [value]="balanceVal" readonly >
             <br>
             <br>
             <label for="withdraw">AMOUNT TO WITHDRAW</label>
-            <input type="number" class="form-control" id="withdraw"  [(ngModel)]="withdrawAmount" name="alterEgo">
-            <button type="submit" class="btn btn-secondary w-100">WITHDRAW</button>
+            <input type="number" required class="form-control" id="withdraw" #withdraw="ngModel"  [(ngModel)]="withdrawAmount" name="withdraw" withdrawLimitValidator [value]="withdrawAmount" [currBal]="balanceVal" [ngClass]="{ 'is-invalid':  withdraw.errors }">
+            <div *ngIf="withdraw.invalid && (withdraw.dirty || withdraw.touched)" class="alert alert-danger">
+
+            
+            <div class="card-text">
+                <span *ngIf="withdraw.errors?.['error'] && (withdraw.touched || withdraw.dirty)">
+                    <p>You cannot withdraw this amount</p>
+                  </span>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-secondary w-100"  [disabled]="withdrawForm.form.invalid">WITHDRAW</button>
         </div>
         </form>
     </div>
