@@ -1,34 +1,30 @@
-<div class="conatiner">
-<p>transfer works!</p>
 <h1>Fund Transfer</h1>
 <p>Transfer money from one account to another.</p>
 
 <form class="form-group" style="margin-left:2%;" [formGroup]="transfer">
     <div class="row">
         <div class="col-sm-12">Sender</div>
-    
-        <select class="col-sm-12" formControlName="from">
-            <option *ngFor='let user of users' value="{{user.email}}" name="sender" (click)="retBalance(user.email,'from')">{{user.email}}</option>
+
+        <select class="col-sm-12" formControlName="from" #fromSelected
+            (change)="accountChange(fromSelected.value,'from')" required>
+            <option *ngFor='let user of users' value="{{user.email}}" name="sender">{{user.email}}</option>
         </select>
 
-        <button class="col-sm-12 btn btn-primary" (click)="retBalance(transfer.value.from,'from')">Check Balance</button>
-        <p *ngIf="Fbal_btn">{{from_bal}}</p>
+        <div class="col-sm-12">Balance</div>
+        <input type="text" class="col-sm-12" [value]="from_bal" readonly>
 
         <div class="col-sm-12">Amount</div>
-
         <input class="col-sm-12" type="text" formControlName="amount">
 
         <div class="col-sm-12">Receiver</div>
-
-        <select class="col-sm-12" formControlName="to">
-            <option *ngFor='let user of users' value="{{user.email}}" name="sender" (click)="retBalance(user.email,'to')">{{user.email}}</option>
+        <select class="col-sm-12" formControlName="to" #toSelected (change)="accountChange(toSelected.value,'to')"
+            required>
+            <option *ngFor='let user of users' value="{{user.email}}" name="sender">{{user.email}}</option>
         </select>
 
-        <button class="col-sm-12 btn btn-primary" (click)="retBalance(transfer.value.to,'to')">Check Balance</button>
-        <p *ngIf="Tbal_btn">{{to_bal}}</p>
+        <div class="col-sm-12">Balance</div>
+        <input type="text" class="col-sm-12" [value]="to_bal" readonly>
 
-        <button type="submit" class="col-sm-12 btn btn-primary" (click)="onSubmit()">Submit</button>
-        <button type="reset" class="col-sm-12 btn btn-primary" (click)="resetForm()">Reset</button>
-    </div>    
+        <button type="submit" class="col-sm-12 btn btn-lg btn-secondary" (click)="onSubmit()">Submit</button>
+    </div>
 </form>
-</div>
