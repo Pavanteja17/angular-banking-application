@@ -8,6 +8,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { UserService } from '../Data.Service/user.service/user.service';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers:[
+    UserService
   ],
   exports: [
     IndexComponent

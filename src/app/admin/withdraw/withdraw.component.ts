@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import { Iuser } from 'src/app/Data.Service/user.service/user.data';
+import { UserService } from 'src/app/Data.Service/user.service/user.service';
 
-
-interface Animal {
-  name: string;
-  sound: string;
-}
 
 @Component({
   selector: 'app-withdraw',
@@ -13,15 +10,32 @@ interface Animal {
   styleUrls: ['./withdraw.component.css']
 })
 export class WithdrawComponent implements OnInit {
-  withDrawForm:any =  FormGroup
-  selectFormControl = new FormControl('', Validators.required);
+  public users:Iuser[]=[];
+  mailid:any;
+  withdrawAmount:number = 0;
+  balanceVal:any;
+  constructor(private userService : UserService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(){
+    
+  this.listofUsers()
   }
+
+  listofUsers(){
+     this.users = this.userService.getAllUsers();
+  }
+  
+  onAccountChange(email:any){
+    const currUser = this.users.find(ele => ele.email == email)
+    this.balanceVal = currUser?.balance
+    this.mailid = currUser?.email
+  }
+
   onSubmit(): void {
 
+    this.userService.withdrawAmount(this.mailid, this.withdrawAmount);
+    this.users = this.userService.getAllUsers();
+    this.balanceVal = this.balanceVal - this.withdrawAmount;
   }
 
 }

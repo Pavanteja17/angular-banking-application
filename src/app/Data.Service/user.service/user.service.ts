@@ -73,6 +73,7 @@ export class UserService {
   }
 
   depositAmount(email:string,amt:number):string{
+    console.log("+++"+amt);
     var ind=this.searchUser(email);
     this.users[ind].balance+=amt;
     return("Amount deposited");
@@ -92,5 +93,9 @@ export class UserService {
   checkBalance(email:string):number{
     var ind=this.searchUser(email);
     return this.users[ind].balance;
+  }
+
+  getAllUsers() {
+    return this.users;
   }
 }
