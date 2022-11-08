@@ -3,27 +3,32 @@
       <h3 class="card-title" style="font-weight: bold;">Withdraw</h3>
       <br>
       <h6 class="card-subtitle mb-2 text-muted">Select an account to withdraw money from</h6>
-      <form [formGroup]="withDrawForm" (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #withdrawForm="ngForm"novalidate>
         <div class="form-group">
             <label for="account">ACCOUNT</label>
-            <select  required [formControl]="selectFormControl"  class="form-control "id="account">
-                <option label="--select account --"></option>
-                <option value="Joshua #1234">Saab</option>
-                <option value="Joshua#1234">Mercedes</option>
-                <option value="Joshua#1234">Audi</option>
+            <select  #myselect required   class="form-control " (change)="onAccountChange(myselect.value)" >
+               <option selected>Select account to withdraw</option>
+                <option [value]="user.email" *ngFor="let user of users"   >{{user.email}}</option>
+                
               </select>
 
             <label for="balance">CURRENT BALANCE</label>
-            <input type="number" class="form-control" id="balance">
+            <input type="text" class="form-control" id="balance" [value]="balanceVal" readonly >
             <br>
             <br>
             <label for="withdraw">AMOUNT TO WITHDRAW</label>
-            <input type="number" class="form-control" id="withdraw">
-            <button type="button" class="btn btn-secondary w-100">WITHDRAW</button>
-        </div>
-        <div class="container">
+            <input type="number" required class="form-control" id="withdraw" #withdraw="ngModel"  [(ngModel)]="withdrawAmount" name="withdraw" withdrawLimitValidator [value]="withdrawAmount" [currBal]="balanceVal" [ngClass]="{ 'is-invalid':  withdraw.errors }">
+            <div *ngIf="withdraw.invalid && (withdraw.dirty || withdraw.touched)" class="alert alert-danger">
+
             
-         </div>
+            <div class="card-text">
+                <span *ngIf="withdraw.errors?.['error'] && (withdraw.touched || withdraw.dirty)">
+                    <p>You cannot withdraw this amount</p>
+                  </span>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-secondary w-100"  [disabled]="withdrawForm.form.invalid">WITHDRAW</button>
+        </div>
         </form>
     </div>
   </div>

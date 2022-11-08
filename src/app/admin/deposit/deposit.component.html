@@ -3,27 +3,32 @@
       <h3 class="card-title" style="font-weight: bold;">Deposit</h3>
       <br>
       <h6 class="card-subtitle mb-2 text-muted">Select an account to withdraw money from</h6>
-      <form [formGroup]="withDrawForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+      <form (ngSubmit)="onSubmit()" #depositForm="ngForm" novalidate>
+        <div class="form-group" >
             <label for="account">ACCOUNT</label>
-            <select  required [formControl]="selectFormControl"  class="form-control "id="account">
-                <option label="--select account --"></option>
-                <option value="Joshua #1234">Saab</option>
-                <option value="Joshua#1234">Mercedes</option>
-                <option value="Joshua#1234">Audi</option>
+            <select  #myselect required   class="form-control " (change)="onAccountChange(myselect.value)" >
+               <option selected>Select account to deposit</option>
+                <option [value]="user.email" *ngFor="let user of users"   >{{user.email}}</option>
+                
               </select>
 
             <label for="balance">CURRENT BALANCE</label>
-            <input type="number" class="form-control" id="balance">
+            <input type="text" class="form-control" id="balance" [value]="balanceVal" readonly  >
             <br>
             <br>
-            <label for="withdraw">AMOUNT TO DEPOSIT</label>
-            <input type="number" class="form-control" id="withdraw">
-            <button type="button" class="btn btn-secondary w-100">DEPOSIT</button>
-        </div>
-        <div class="container">
+            <label for="deposit">AMOUNT TO DEPOSIT</label>
+            <input type="number" required class="form-control" id="withdraw" #deposit="ngModel"  [(ngModel)]="withdrawAmount" name="withdraw" depositValidator [value]="withdrawAmount" [ngClass]="{ 'is-invalid':  deposit.errors }">
+            <div *ngIf="deposit.invalid && (deposit.dirty || deposit.touched)" class="alert alert-danger">
+
             
-         </div>
+            <div class="card-text">
+                <span *ngIf="deposit.errors?.['error'] && (deposit.touched || deposit.dirty)">
+                    <p>You cannot deposit this amount</p>
+                  </span>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-secondary w-100"  [disabled]="depositForm.form.invalid">DEPOSIT</button>
+        </div>
         </form>
     </div>
   </div>

@@ -8,6 +8,9 @@ import { TransferComponent } from './transfer/transfer.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { UserService } from '../Data.Service/user.service/user.service';
+import { WithdrawLimitValidatorDirective } from '../validators/withdraw-limit-validator.directive';
+import { DepositValidatorDirective } from './deposit-validator.directive';
 
 
 @NgModule({
@@ -17,13 +20,18 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     TransferComponent,
     WithdrawComponent,
     DepositComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    WithdrawLimitValidatorDirective,
+    DepositValidatorDirective
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers:[
+    UserService
   ],
   exports: [
     IndexComponent
