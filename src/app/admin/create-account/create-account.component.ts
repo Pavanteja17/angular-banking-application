@@ -54,7 +54,8 @@ export class CreateAccountComponent implements OnInit {
       email:this.createForm.value.email,
       phoneNo: this.createForm.value.phoneNo,
       balance:this.createForm.value.balance,
-      type: this.createForm.value.type
+      type: this.createForm.value.type,
+      transactions:[]
     }
 
     this._loginObj = {
@@ -65,8 +66,8 @@ export class CreateAccountComponent implements OnInit {
     var msg = this.userService.createUser(temp);
     window.alert(msg);
     console.log(msg);
-    this.router.navigate(['/admin/home']);
     this.loginService.addUser(this._loginObj);
+    this.router.navigate(['/admin/home']);
   }
 
 }
