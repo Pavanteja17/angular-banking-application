@@ -9,14 +9,26 @@ import { Iuser } from './user.data';
 export class UserService {
   users: Iuser[] =[
     {
-      name: "TempUser",
+      name: "TempUser1",
       email: "tempuser@wf.com",
       type: "savings",
-      phoneNo: 989834,
+      phoneNo: 9999999999,
       balance: 10000
+    },
+    {
+      name: "TempUser2",
+      email: "tempuser2@wf.com",
+      type: "savings",
+      phoneNo: 8888888888,
+      balance: 100000
     }
+
   ]
   constructor(private loginService: UserLoginService) { }
+
+  listUsers():Iuser[]{
+    return this.users;
+  }
 
   searchUser(email:string):number{
     for(var i=0;i<this.users.length;i++){
@@ -76,7 +88,7 @@ export class UserService {
   depositAmount(email:string,amt:number):string{
     console.log("+++"+amt);
     var ind=this.searchUser(email);
-    this.users[ind].balance+=amt;
+    this.users[ind].balance+=Number(amt);
     return("Amount deposited");
   }
 
