@@ -1,1 +1,22 @@
-<p>transfer works!</p>
+<h1>Fund Transfer</h1>
+<p>Transfer money from one account to another.</p>
+
+<form class="form-group" style="margin-left:2%;" [formGroup]="transfer">
+    <div class="row">
+        <div class="col-sm-12">Sender</div>
+
+        <input type="text" class="col-sm-12" formControlName="from" placeholder="{{curr_user}}"/>
+
+        <div class="col-sm-12">Balance</div>
+        <input type="text" class="col-sm-12" [value]="from_bal" readonly>
+
+        <div class="col-sm-12">Amount</div>
+        <input class="col-sm-12" type="text" formControlName="amount">
+
+        <div class="col-sm-12">Receiver</div>
+        <select class="col-sm-12" formControlName="to" required>
+            <option *ngFor='let user of users' value="{{user.email}}" name="sender">{{user.email}}</option>
+        </select>
+        <button type="submit" class="col-sm-12 btn btn-lg btn-secondary" (click)="onSubmit()">Submit</button>
+    </div>
+</form>
