@@ -56,7 +56,7 @@ export class BudgetService {
     }
   }
   // to show remaining budget-> after subtracting all the withdraws from the limit
-  finalTotal(email:string){
+    remainingBudget(email:string){
     var ind=this.searchUser(email);
     var final=this.budget[ind].tot_budget
     for(var i=0; i<this.budget[ind].expense.length; i++){
