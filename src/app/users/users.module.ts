@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 import { UsersRoutingModule } from './users-routing.module';
 import { IndexComponent } from './index/index.component';
@@ -24,6 +26,8 @@ import { TimestampConverterPipe } from './timestamp-converter.pipe';
   imports: [
     CommonModule,
     UsersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,    
   ],
   providers:[],
   exports: [IndexComponent]
