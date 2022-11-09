@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   password: string | undefined;
 
   registerForm:any = FormGroup;
-submitted = false;
+  submitted = false;
 
 
   constructor(

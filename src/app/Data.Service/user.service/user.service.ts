@@ -7,23 +7,10 @@ import { Iuser } from './user.data';
   providedIn: 'root'
 })
 export class UserService {
-  users: Iuser[] =[
-    {
-      name: "TempUser1",
-      email: "tempuser@wf.com",
-      type: "savings",
-      phoneNo: 9999999999,
-      balance: 10000
-    },
-    {
-      name: "TempUser2",
-      email: "tempuser2@wf.com",
-      type: "savings",
-      phoneNo: 8888888888,
-      balance: 100000
-    }
-
-  ]
+  getUsersList(): any[] {
+    throw new Error('Method not implemented.');
+  }
+  users: Iuser[] =[]
   constructor(private loginService: UserLoginService) { }
 
   listUsers():Iuser[]{
@@ -44,9 +31,11 @@ export class UserService {
     if (this.searchUser(user.email)==-1){
       this.users.push(user);
       console.log("added");
+      return "Account created successfully"
     }
     else{
       console.log("user already registerd with same email");
+      return "user already registerd with same email"
     }
   }
 

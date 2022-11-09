@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Iuser } from 'src/app/Data.Service/user.service/user.data';
 import { UserService } from 'src/app/Data.Service/user.service/user.service';
 
@@ -15,7 +16,7 @@ export class DepositComponent implements OnInit {
   mailid:any;
   withdrawAmount:number = 0;
   balanceVal:any = 0;
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private router: Router) { }
 
   ngOnInit(){
     
@@ -40,9 +41,12 @@ export class DepositComponent implements OnInit {
 
   onSubmit(): void {
 
-    this.userService.depositAmount(this.mailid, this.withdrawAmount);
+    var msg = this.userService.depositAmount(this.mailid, this.withdrawAmount);
     this.users = this.userService.getAllUsers();
     this.balanceVal += this.withdrawAmount;
+    window.alert(msg);
+    console.log(msg);
+    this.router.navigate(['/admin/home']);
 
   }
 }

@@ -3,6 +3,7 @@ import { UserService } from 'src/app/Data.Service/user.service/user.service';
 import { Iuser } from 'src/app/Data.Service/user.service/user.data';
 import { IloginUsers } from 'src/app/Data.Service/login.service/login.users';
 import { UserLoginService } from 'src/app/Data.Service/login.service/user.login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -27,7 +28,7 @@ export class CreateAccountComponent implements OnInit {
     phoneNo: 0,
     balance: 0
   }
-  constructor(private userService : UserService, private loginService: UserLoginService) { }
+  constructor(private userService : UserService, private loginService: UserLoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +40,7 @@ export class CreateAccountComponent implements OnInit {
       balance : this._initialBalance,
       type : this._accountType,
       email : this._email,
-      phoneNo: 9999999999
+      phoneNo: this._accountno
     }
     this._loginObj = {
       userName: this._email,
@@ -51,10 +52,11 @@ export class CreateAccountComponent implements OnInit {
     this._email = ""
     this._password = ""
     this._accountno = Date.now()
-    this.userService.createUser(this._userObj)
-
+    var msg = this.userService.createUser(this._userObj)
+    window.alert(msg);
+    console.log(msg);
+    this.router.navigate(['/admin/home']);
     this.loginService.addUser(this._loginObj);
-
   }
   
 }
