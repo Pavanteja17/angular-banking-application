@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+    display: flex;
+    background: white;
+    border-bottom: 10px;
+}
+.amount {
+    width: 50%;
+}
+
+p{
+    font-size: 14px;
+    font-weight: 300;
+}

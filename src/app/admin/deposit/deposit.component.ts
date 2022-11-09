@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ITransaction } from 'src/app/Data.Service/transaction';
 import { Iuser } from 'src/app/Data.Service/user.service/user.data';
 import { UserService } from 'src/app/Data.Service/user.service/user.service';
 
@@ -42,6 +43,12 @@ export class DepositComponent implements OnInit {
   onSubmit(): void {
 
     var msg = this.userService.depositAmount(this.mailid, this.withdrawAmount);
+    var transaction:ITransaction={
+      date: new Date().getTime(),
+      transactionMessage:"Deposit",
+      amount:this.withdrawAmount
+    }
+    this.userService.addTransaction(this.mailid, transaction);
     this.users = this.userService.getAllUsers();
     this.balanceVal += this.withdrawAmount;
     window.alert(msg);

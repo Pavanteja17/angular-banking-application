@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
+import { ITransaction } from 'src/app/Data.Service/transaction';
 import { Iuser } from 'src/app/Data.Service/user.service/user.data';
 import { UserService } from 'src/app/Data.Service/user.service/user.service';
 
@@ -36,6 +37,12 @@ export class WithdrawComponent implements OnInit {
   onSubmit(): void {
 
     var msg = this.userService.withdrawAmount(this.mailid, this.withdrawAmount);
+    var transaction:ITransaction={
+      date: new Date().getTime(),
+      transactionMessage:"Withdraw",
+      amount:-1*this.withdrawAmount
+    }
+    this.userService.addTransaction(this.mailid, transaction);
     window.alert(msg);
     console.log(msg);
     this.router.navigate(['/admin/home']);

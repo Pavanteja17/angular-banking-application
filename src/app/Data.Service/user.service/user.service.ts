@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IloginUsers } from '../login.service/login.users';
 import { UserLoginService } from '../login.service/user.login.service';
+import { ITransaction } from '../transaction';
 import { Iuser } from './user.data';
 
 @Injectable({
@@ -18,7 +19,9 @@ export class UserService {
   }
 
   searchUser(email:string):number{
+    console.log(this.users.length);
     for(var i=0;i<this.users.length;i++){
+      console.log(this.users[i].email);
       if(this.users[i].email==email){
         console.log("found");
         return i;
@@ -75,7 +78,6 @@ export class UserService {
   }
 
   depositAmount(email:string,amt:number):string{
-    console.log("+++"+amt);
     var ind=this.searchUser(email);
     this.users[ind].balance+=Number(amt);
     return("Amount deposited");
@@ -99,5 +101,20 @@ export class UserService {
 
   getAllUsers() {
     return this.users;
+  }
+
+  getCurrentUserDetails(uname: string){
+    var ind = this.searchUser(uname);
+    console.log(ind);
+    return this.users[ind];
+  }
+  addTransaction(email:string, transaction: ITransaction){
+    var ind=this.searchUser(email);
+    this.users[ind].transactions.push(transaction);
+  }
+
+  getTransactions(email:string){
+    var ind=this.searchUser(email);
+    return this.users[ind].transactions;
   }
 }

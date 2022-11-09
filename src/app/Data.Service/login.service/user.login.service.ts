@@ -5,6 +5,7 @@ import { IloginUsers } from './login.users';
   providedIn: 'root'
 })
 export class UserLoginService {
+  currentUser:string = "";
   users:IloginUsers[]=[
     {
       userName:"admin",
@@ -25,8 +26,11 @@ export class UserLoginService {
   validateUser(uname:string,pass:string):boolean{
     for(var i=0;i< this.users.length;i++){
       if(this.users[i].userName== uname)
-        if(this.users[i].password==pass)
+        if(this.users[i].password==pass){
+          this.currentUser = uname;
           return true;
+        }
+    
     }
     return false;
   }
@@ -42,5 +46,9 @@ export class UserLoginService {
         console.log("user not found!!");
       }
     }
+  }
+
+  getCurrentUser(){
+    return this.currentUser;
   }
 }

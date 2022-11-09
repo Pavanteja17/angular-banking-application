@@ -26,7 +26,8 @@ export class CreateAccountComponent implements OnInit {
     email: "",
     type: "",
     phoneNo: 0,
-    balance: 0
+    balance: 0,
+    transactions:[]
   }
   constructor(private userService : UserService, private loginService: UserLoginService, private router: Router) { }
 
@@ -40,7 +41,8 @@ export class CreateAccountComponent implements OnInit {
       balance : this._initialBalance,
       type : this._accountType,
       email : this._email,
-      phoneNo: this._accountno
+      phoneNo: this._accountno,
+      transactions:[]
     }
     this._loginObj = {
       userName: this._email,
