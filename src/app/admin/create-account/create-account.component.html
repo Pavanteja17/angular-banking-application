@@ -1,26 +1,40 @@
-<!DOCTYPE html>
 <div class="card">
     <div class="card-body">
       <h3 class="card-title" style="font-weight: bold;">Create Account</h3>
+
       <h6 class="card-subtitle mb-2 text-muted">Create a new client account</h6>
-<form >
+
+<form [formGroup]="createForm" novalidate (ngSubmit)="submitForm()">
     <label>FULL NAME</label>
-    <input type="text" name="fullname" required class="form-control" [(ngModel)]="_fullname" />
+        <input type="text" name="fullname" class="form-control" formControlName="name"/>
+            <p class="warnmsg" *ngIf="name.invalid && name.touched">Name Required</p>
+    <label>Phone Number</label>
+        <input type="tel" class="form-control" formControlName="phoneNo">
+        <p class="warnmsg" *ngIf="phoneNo.invalid && phoneNo.touched">Phone Number Required</p>
+
     <label>ACCOUNT NO.</label><br>
-    <input type="text" name="accountno" class="form-control" [(ngModel)]="_accountno" readonly disabled/>
+        <input type="text" name="accountno" class="form-control" formControlName="accno"/>
+
     <label>INITIAL BALANCE</label><br>
-    <input type="number" name="initialbalance" class="form-control" [(ngModel)]="_initialBalance"/>
+        <input type="number" name="initialbalance" class="form-control" formControlName='balance'/>
+
     <label>ACCOUNT TYPE</label>
-    <select name="accounttype" class="form-control" required [(ngModel)]="_accountType">
-        <option value="SAVINGS ACCOUNT">SAVINGS ACCOUNT</option>
-        <option value="CHECKING ACCOUNT">CHECKING ACCOUNT</option>
-    </select>
+        <select name="accounttype" class="form-control"  formControlName="type">
+            <option value="savings">SAVINGS ACCOUNT</option>
+            <option value="checking">CHECKING ACCOUNT</option>
+        </select>
+
     <hr>
     <label>EMAIL ADDRESS</label>
-    <input type="email" class="form-control"name="email" [(ngModel)]="_email" required/>
+        <input type="email" class="form-control"name="email" required formControlName='email'/>
+        <p class="warnmsg" *ngIf="email.invalid && email.touched">Please provide a correct email</p>
+
     <label>PASSWORD</label>
-    <input type="password" name="password" class="form-control" [(ngModel)]="_password" required/>
-    <button class="btn btn-secondary w-100"  type="submit" (click)="submitForm($event)">CREATE ACCOUNT</button>
+        <input type="password" name="password" class="form-control" required formControlName="pass"/>
+        <p class="warnmsg" *ngIf="pass.invalid && pass.touched">Password Required</p>
+
+    <button class="btn btn-secondary w-100"  type="submit" (click)="submitForm()" [disabled]="createForm.invalid">CREATE ACCOUNT</button>
+
 </form>
 </div>
 </div>

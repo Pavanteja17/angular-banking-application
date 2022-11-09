@@ -11,7 +11,24 @@ export class UserService {
   getUsersList(): any[] {
     throw new Error('Method not implemented.');
   }
-  users: Iuser[] =[]
+  users: Iuser[] =[
+    {
+      name:'Temp1',
+      email:'temp1@wf.com',
+      type:'savings',
+      phoneNo:7397547991,
+      balance:1000,
+      transactions:[],
+    },
+    {
+      name:'Temp2',
+      email:'temp2@wf.com',
+      type:'savings',
+      phoneNo:7397547992,
+      balance:10000,
+      transactions:[]
+    }
+  ]
   constructor(private loginService: UserLoginService) { }
 
   listUsers():Iuser[]{

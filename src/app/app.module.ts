@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { UserLoginService } from './Data.Service/login.service/user.login.service';
 import { UserService } from './Data.Service/user.service/user.service';
 import { AuthGuard } from './_helper/auth-guard.guard';
-import { MoneyConverterPipe } from './_helper/money-converter.pipe';
 import { AccountService } from './_services/account.service';
-
+// import { MoneyConverterPipe } from './_helper/money-converter.pipe';
 
 
 
@@ -16,7 +15,8 @@ import { AccountService } from './_services/account.service';
 @NgModule({
   declarations: [
     AppComponent,
-    MoneyConverterPipe
+    // MoneyConverterPipe,
+
   ],
   imports: [
     BrowserModule,
