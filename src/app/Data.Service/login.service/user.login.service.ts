@@ -11,7 +11,11 @@ export class UserLoginService {
       password:"12345678"
     },
     {
-      userName:"tempuser1@wf.com",
+      userName:"temp1@wf.com",
+      password:"qwerty12"
+    },
+    {
+      userName:"temp2@wf.com",
       password:"qwerty12"
     }
   ]

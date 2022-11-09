@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UserService } from './Data.Service/user.service/user.service';
 import { AuthGuard } from './_helper/auth-guard.guard';
 import { AccountService } from './_services/account.service';
-import { MoneyConverterPipe } from './_helper/money-converter.pipe';
+// import { MoneyConverterPipe } from './_helper/money-converter.pipe';
 
 
 
@@ -14,7 +14,7 @@ import { MoneyConverterPipe } from './_helper/money-converter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    MoneyConverterPipe,
+    // MoneyConverterPipe,
 
   ],
   imports: [

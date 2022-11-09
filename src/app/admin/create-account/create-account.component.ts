@@ -4,6 +4,7 @@ import { Iuser } from 'src/app/Data.Service/user.service/user.data';
 import { IloginUsers } from 'src/app/Data.Service/login.service/login.users';
 import { UserLoginService } from 'src/app/Data.Service/login.service/user.login.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-account',
@@ -11,52 +12,61 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
-  _fullname: string = ""
-  _accountno: number = Date.now()
-  _initialBalance: number = 0
-  _accountType: string = ""
-  _email: string = ""
-  _password: string = ""
-  _loginObj:IloginUsers = {
-    userName: "",
-    password: ""
-  }
-  _userObj: Iuser = {
-    name: "",
-    email: "",
-    type: "",
-    phoneNo: 0,
-    balance: 0
-  }
-  constructor(private userService : UserService, private loginService: UserLoginService, private router: Router) { }
+
+  _accountno: number = Date.now();
+  _loginObj: IloginUsers;
+  createForm: FormGroup;
+
+  constructor(private userService: UserService,
+    private loginService: UserLoginService,
+    private router: Router,
+    private fb: FormBuilder) 
+    {
+    this.createForm = this.fb.group({
+      name: ['',[Validators.required]],
+      accno: [{value: this._accountno , disabled: true},[Validators.required]],
+      balance: [0,[Validators.required]],
+      phoneNo: [,[Validators.required]],
+      type: ['',[Validators.required]],
+      email: ['',[Validators.required, Validators.email]],
+      pass: ['',[Validators.minLength(6)]]
+    });
+    this.createForm.valueChanges.subscribe(console.log);
+  } 
+
+  get name() { return this.createForm.get('name'); }
+  get accno() { return this.createForm.get('accno'); }
+  get in_bal() { return this.createForm.get('balance'); }
+  get phoneNo() { return this.createForm.get('phoneNo'); }
+  get ac_type() { return this.createForm.get('type'); }
+  get email() { return this.createForm.get('email'); }
+  get pass() { return this.createForm.get('pass'); }
+
 
   ngOnInit(): void {
   }
 
-  submitForm(e: any) {
-    e.preventDefault()
-    this._userObj = {
-      name: this._fullname,
-      balance : this._initialBalance,
-      type : this._accountType,
-      email : this._email,
-      phoneNo: this._accountno
+  submitForm() {
+    if (this.createForm.invalid)
+      console.log("error!!");
+    var temp:Iuser ={
+      name:this.createForm.value.name,
+      email:this.createForm.value.email,
+      phoneNo: this.createForm.value.phoneNo,
+      balance:this.createForm.value.balance,
+      type: this.createForm.value.type
     }
+
     this._loginObj = {
-      userName: this._email,
-      password: this._password
+      userName: this.createForm.value.email,
+      password: this.createForm.value.pass
     }
-    this._fullname = ""
-    this._initialBalance = 0
-    this._accountType = ""
-    this._email = ""
-    this._password = ""
-    this._accountno = Date.now()
-    var msg = this.userService.createUser(this._userObj)
+
+    var msg = this.userService.createUser(temp);
     window.alert(msg);
     console.log(msg);
     this.router.navigate(['/admin/home']);
     this.loginService.addUser(this._loginObj);
   }
-  
+
 }
