@@ -53,7 +53,15 @@ export class BudgetService {
       if(this.budget[ind].expense[i].id==id)
         this.budget[ind].expense[i].amount = amt;
     console.log("Updated!!");
-    
     }
+  }
+  // to show remaining budget-> after subtracting all the withdraws from the limit
+  finalTotal(email:string){
+    var ind=this.searchUser(email);
+    var final=this.budget[ind].tot_budget
+    for(var i=0; i<this.budget[ind].expense.length; i++){
+      final-=this.budget[ind].expense[i].amount;
+    }
+    return final;
   }
 }
