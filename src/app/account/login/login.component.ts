@@ -38,8 +38,11 @@ submitted = false;
     let loggedInUser = this.accountService.login(userName, password);
     if(loggedInUser == 'admin') {
       this.router.navigate(['admin']);
-    }else{
+    }else if(loggedInUser=='user'){
       this.router.navigate(['users']);
+    }
+    else{
+      console.log();
     }
   }
 

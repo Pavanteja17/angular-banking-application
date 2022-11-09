@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { IloginUsers } from '../login.service/login.users';
+import { UserLoginService } from '../login.service/user.login.service';
 import { Iuser } from './user.data';
 
 @Injectable({
@@ -14,7 +16,7 @@ export class UserService {
       balance: 10000
     }
   ]
-  constructor() { }
+  constructor(private loginService: UserLoginService) { }
 
   searchUser(email:string):number{
     for(var i=0;i<this.users.length;i++){
@@ -30,7 +32,6 @@ export class UserService {
     if (this.searchUser(user.email)==-1){
       this.users.push(user);
       console.log("added");
-      
     }
     else{
       console.log("user already registerd with same email");

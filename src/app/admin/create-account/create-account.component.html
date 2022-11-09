@@ -1,1 +1,26 @@
-<p>create-account works!</p>
+
+<div class="card">
+    <div class="card-body">
+      <h3 class="card-title" style="font-weight: bold;">Create Account</h3>
+      <h6 class="card-subtitle mb-2 text-muted">Create a new client account</h6>
+<form>
+    <label>FULL NAME</label>
+    <input type="text" name="fullname" class="form-control" [(ngModel)]="_fullname" required/>
+    <label>ACCOUNT NO.</label><br>
+    <input type="text" name="accountno" class="form-control" [(ngModel)]="_accountno" readonly disabled/>
+    <label>INITIAL BALANCE</label><br>
+    <input type="number" name="initialbalance" class="form-control" [(ngModel)]="_initialBalance"/>
+    <label>ACCOUNT TYPE</label>
+    <select name="accounttype" class="form-control" required [(ngModel)]="_accountType">
+        <option value="SAVINGS ACCOUNT">SAVINGS ACCOUNT</option>
+        <option value="CHECKING ACCOUNT">CHECKING ACCOUNT</option>
+    </select>
+    <hr>
+    <label>EMAIL ADDRESS</label>
+    <input type="email" class="form-control"name="email" [(ngModel)]="_email" required/>
+    <label>PASSWORD</label>
+    <input type="password" name="password" class="form-control" [(ngModel)]="_password" required/>
+    <button class="btn btn-secondary w-100"  type="submit" (click)="submitForm($event)">CREATE ACCOUNT</button>
+</form>
+</div>
+</div>
