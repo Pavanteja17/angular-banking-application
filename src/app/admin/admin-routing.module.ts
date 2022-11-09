@@ -19,7 +19,6 @@ const routes: Routes = [
       { path: 'withdraw', component: WithdrawComponent, pathMatch:'full' },
       { path: 'deposit', component: DepositComponent, pathMatch:'full' },
       {path: 'logout', redirectTo:'/account/login', pathMatch:'full'}
-
     ]
   }
 ];

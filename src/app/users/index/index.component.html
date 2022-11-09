@@ -1,1 +1,16 @@
-<p>index works!</p>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="sidenav">
+    <span><a routerLink = "/users/home"><i class="fa fa-home fa-fw"></i>Home</a></span>
+    <span><a routerLink = "budget-app"><i class="fa fa-money fa-fw"></i> Budget App</a></span>
+    <span><a routerLink = "transfer"><i class="fa fa-exchange fa-fw"></i> Fund Transfer</a></span>
+    <span><a routerLink = "logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></span>
+  </div>
+
+  <div class = "main">
+    <router-outlet></router-outlet>
+  </div>
+</body>

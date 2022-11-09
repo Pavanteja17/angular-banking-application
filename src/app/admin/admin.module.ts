@@ -12,6 +12,7 @@ import { UserService } from '../Data.Service/user.service/user.service';
 import { WithdrawLimitValidatorDirective } from '../validators/withdraw-limit-validator.directive';
 import { DepositValidatorDirective } from './deposit-validator.directive';
 import { MoneyConverterPipe } from '../_helper/money-converter.pipe';
+import { AppModule } from '../app.module';
 
 
 @NgModule({
@@ -24,16 +25,16 @@ import { MoneyConverterPipe } from '../_helper/money-converter.pipe';
     CreateAccountComponent,
     WithdrawLimitValidatorDirective,
     DepositValidatorDirective,
-    MoneyConverterPipe
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers:[
-    UserService
+    
   ],
   exports: [
     IndexComponent
