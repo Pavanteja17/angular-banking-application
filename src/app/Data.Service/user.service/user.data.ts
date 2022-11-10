@@ -6,5 +6,6 @@ export interface Iuser{
     type: string;
     phoneNo: number;
     balance: number;
+    accno: number,
     transactions:Array<ITransaction>;
 }

@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     type: "",
     phoneNo: 0,
     balance: 0,
+    accno:Date.now(),
     transactions:[]
   }
   transaction: ITransaction[] = [];

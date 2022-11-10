@@ -18,6 +18,7 @@ export class UserService {
       type:'savings',
       phoneNo:7397547991,
       balance:1000,
+      accno:Date.now(),
       transactions:[],
     },
     {
@@ -26,6 +27,7 @@ export class UserService {
       type:'savings',
       phoneNo:7397547992,
       balance:10000,
+      accno:Date.now(),
       transactions:[]
     }
   ]

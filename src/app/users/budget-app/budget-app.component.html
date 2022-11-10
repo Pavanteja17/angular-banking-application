@@ -1,1 +1,38 @@
-<p>budget-app works!</p>
+<div class="card" >
+    <div class="card-body">
+      <h5 class="card-title">Budget App</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Start budgeting your money with our built in app.</h6>
+      <button  class="btn btn-primary">ADD BUDGET</button>
+      <div  style="float:right; margin-top: 5px;" >
+        <h6 class="mb-2 text-muted">REMAINING BUDGET</h6>
+        <h6>-500</h6>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <tbody>
+        <tr *ngFor="let row of backendData; index as i;"  class="hover-highlight">
+    
+            <td>
+                <div *ngIf="enableEdit">
+                    <input type="number" [(ngModel)]="row.amount" class="form-control"/>
+                </div>
+                <div *ngIf="!enableEdit">
+                  {{row.amount}}
+                </div>
+    
+    
+            </td>
+        
+        
+            <td>
+                <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+                <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn" (click)="saveSegment(row)" type="submit">Save</button>
+                <i style="font-size:24px" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)" class="fa">&#xf044;</i>
+            </td>
+            
+          </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+  </div>

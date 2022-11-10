@@ -55,6 +55,7 @@ export class CreateAccountComponent implements OnInit {
       phoneNo: this.createForm.value.phoneNo,
       balance:this.createForm.value.balance,
       type: this.createForm.value.type,
+      accno:Date.now(),
       transactions:[]
     }
 
