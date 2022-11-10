@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { WithdrawComponent } from 'src/app/admin/withdraw/withdraw.component';
 import { Ibudget } from './budget.data';
@@ -9,12 +10,12 @@ import { Iexpense } from './expense.data';
 export class BudgetService {
   budget:Ibudget[]=[
     {
-      email:'temp1@wf.com',
+      email:'john.doe@wf.com',
       tot_budget: 5000,
       expense: []
     },
     {
-      email:'temp2@wf.com',
+      email:'altair.cook@wf.com',
       tot_budget: 1000,
       expense: []
     }

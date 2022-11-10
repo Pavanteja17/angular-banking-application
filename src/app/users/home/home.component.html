@@ -1,13 +1,13 @@
 
  <div class="container" style="margin-top: 1.5%;">
-  <h2>My Account</h2>
+  <h3 style="font-weight: bold;">My Account</h3>
  </div>
 <div class="container">
     <div class="card" style="width: 100%; margin-top: 1.5%;">
         <div class="card-body">
           <h5 class="card-title">{{user.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{user.type}}</h6>
-          <p class="card-text">{{user.phoneNo}}</p>
+          <p class="card-text">{{user.accno}}</p>
           <div class="text-right position-absolute top-50 end-0"><h3 style="float: right;">${{user.balance }}</h3></div>
         </div>
       </div>
@@ -19,6 +19,9 @@
       <h5 class="card-title">Transactions</h5>
       <table class="table table-striped">
         <tbody>
+          <tr *ngIf="transaction.length==0">
+            <td style="text-align: center;"><h6>No transactions yet!!!</h6></td>
+          </tr>
           <tr *ngFor="let trans of transaction">
             <td>{{trans.date | timestampConverter}}</td>
             <td>{{trans.transactionMessage}}</td>

@@ -1,0 +1,17 @@
+.card{
+    margin-top: 2%;
+}
+.card-text{
+    font-size:19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+th, td {
+
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+ 
+ }

@@ -13,18 +13,18 @@ export class UserService {
   }
   users: Iuser[] =[
     {
-      name:'Temp1',
-      email:'temp1@wf.com',
-      type:'savings',
+      name:'Altair Cook',
+      email:'altair.cook@wf.com',
+      type:'SAVINGS ACCOUNT',
       phoneNo:7397547991,
       balance:1000,
       accno:Date.now(),
       transactions:[],
     },
     {
-      name:'Temp2',
-      email:'temp2@wf.com',
-      type:'savings',
+      name:'John Doe',
+      email:'john.doe@wf.com',
+      type:'CURRENT ACCOUNT',
       phoneNo:7397547992,
       balance:10000,
       accno:Date.now(),
@@ -109,7 +109,7 @@ export class UserService {
       // adding transaction
       var transactionW:ITransaction={
         date: new Date().getTime(),
-        transactionMessage:"Withdraw",
+        transactionMessage:"Fund Transfer to "+destEmail,
         amount:-1*amt
       }
       this.addTransaction(fromEmail,transactionW);
@@ -119,7 +119,7 @@ export class UserService {
       
       var transactionD:ITransaction={
         date: new Date().getTime(),
-        transactionMessage:"Deposit",
+        transactionMessage:"Fund Transfer from "+fromEmail,
         amount:amt
       }
       this.addTransaction(destEmail,transactionD);
