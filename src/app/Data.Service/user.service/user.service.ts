@@ -103,7 +103,25 @@ export class UserService {
   transferAmount(fromEmail:string,destEmail:string,amt:number):string{
     var message = this.withdrawAmount(fromEmail,amt);
     if (message=="Amount Withdrawed"){
+
+      // adding transaction
+      var transactionW:ITransaction={
+        date: new Date().getTime(),
+        transactionMessage:"Withdraw",
+        amount:-1*amt
+      }
+      this.addTransaction(fromEmail,transactionW);
+      
+      // adding transaction
       var tempmsg= this.depositAmount(destEmail,amt);
+      
+      var transactionD:ITransaction={
+        date: new Date().getTime(),
+        transactionMessage:"Deposit",
+        amount:amt
+      }
+      this.addTransaction(destEmail,transactionD);
+      
       return "Amount Transfered";
     }
     else{
