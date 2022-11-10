@@ -6,5 +6,19 @@ form{
 }
 .btn{
     margin-top: 5px;
-    background-color: #111;
 }
+
+.card{
+    margin-top: 1%;
+    width: 100%;
+}
+.card-text{
+    font-size:19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+label{
+    font-size: 15px;
+    font-weight: bold;
+  }

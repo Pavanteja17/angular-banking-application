@@ -1,0 +1,13 @@
+label{
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .card{
+    margin-top: 1%;
+}
+.card-text{
+    font-size:19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

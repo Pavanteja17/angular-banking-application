@@ -1,30 +1,35 @@
-<h1>Fund Transfer</h1>
-<p>Transfer money from one account to another.</p>
+<div class="card">
+    <div class="card-body">
+      <h3 class="card-title" style="font-weight: bold;">Fund Transfer</h3>
+      <br>
+      <h6 class="card-subtitle mb-2 text-muted">Transfer Money From One Account to Another</h6>
 
 <form class="form-group" style="margin-left:2%;" [formGroup]="transfer">
-    <div class="row">
-        <div class="col-sm-12">Sender</div>
-
-        <select class="col-sm-12" formControlName="from" #fromSelected
+    <div class="form-group">
+        
+        <label for="balance">SENDER</label>
+        <select class="form-control" formControlName="from" #fromSelected
             (change)="accountChange(fromSelected.value,'from')" required>
             <option *ngFor='let user of users' value="{{user.email}}" name="sender">{{user.email}}</option>
         </select>
 
-        <div class="col-sm-12">Balance</div>
-        <input type="text" class="col-sm-12" [value]="from_bal" readonly>
+        <label for="balance">BALANCE</label>
+        <input type="text" class="form-control" [value]="from_bal" readonly>
 
-        <div class="col-sm-12">Amount</div>
-        <input class="col-sm-12" type="text" formControlName="amount">
+        <label for="balance">AMOUNT</label>
+        <input class="form-control" type="text" formControlName="amount">
 
-        <div class="col-sm-12">Receiver</div>
-        <select class="col-sm-12" formControlName="to" #toSelected (change)="accountChange(toSelected.value,'to')"
+        <label for="balance">RECEIVER</label>
+        <select class="form-control" formControlName="to" #toSelected (change)="accountChange(toSelected.value,'to')"
             required>
             <option *ngFor='let user of users' value="{{user.email}}" name="sender">{{user.email}}</option>
         </select>
 
-        <div class="col-sm-12">Balance</div>
-        <input type="text" class="col-sm-12" [value]="to_bal" readonly>
+        <label for="balance">BALANCE</label>
+        <input type="text" class="form-control" [value]="to_bal" readonly>
 
-        <button type="submit" class="col-sm-12 btn btn-lg btn-secondary" (click)="onSubmit()">Submit</button>
+        <button type="submit" class="btn btn-secondary w-100" (click)="onSubmit()">TRANSFER</button>
     </div>
 </form>
+</div>
+</div>
