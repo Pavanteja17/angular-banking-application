@@ -65,4 +65,10 @@ export class BudgetService {
     }
     return final;
   }
+
+  addBudget(buget: Ibudget){
+    if(this.searchUser(buget.email)==-1){
+      this.budget.push(buget);
+    }
+  }
 }

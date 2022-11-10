@@ -13,6 +13,7 @@ import { AccountService } from 'src/app/_services/account.service';
 export class LoginComponent implements OnInit {
   username: string | undefined;
   password: string | undefined;
+  invalidCredentials = false;
 
   registerForm:any = FormGroup;
   submitted = false;
@@ -38,11 +39,13 @@ export class LoginComponent implements OnInit {
     let loggedInUser = this.accountService.login(userName, password);
     if(loggedInUser == 'admin') {
       this.router.navigate(['admin']);
+      this.invalidCredentials=false;
     }else if(loggedInUser=='user'){
       this.router.navigate(['users']);
+      this.invalidCredentials=false;
     }
     else{
-      console.log();
+      this.invalidCredentials = true;
     }
   }
 

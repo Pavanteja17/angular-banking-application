@@ -5,7 +5,7 @@
       <button  class="btn btn-secondary" (click)="onAddExpense()">ADD EXPENSE</button>
       <div  style="float:right; margin-top: 5px;" >
         <h6 class="mb-2 text-muted">REMAINING BUDGET</h6>
-        <h6>{{remBudget}}</h6>
+        <h6>${{remBudget}}</h6>
     </div>
     <div>
         <table class="table table-striped">
@@ -17,7 +17,7 @@
                     <input type="number" [(ngModel)]="row.amount" class="form-control "/>
                 </div>
                 <div *ngIf="!enableEdit">
-                  {{row.amount}}
+                  ${{row.amount}}
                 </div>
             </td>
             <td>

@@ -5,6 +5,8 @@ import { IloginUsers } from 'src/app/Data.Service/login.service/login.users';
 import { UserLoginService } from 'src/app/Data.Service/login.service/user.login.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BudgetService } from 'src/app/Data.Service/budget.service/budget.service';
+import { Ibudget } from 'src/app/Data.Service/budget.service/budget.data';
 
 @Component({
   selector: 'app-create-account',
@@ -20,6 +22,7 @@ export class CreateAccountComponent implements OnInit {
   constructor(private userService: UserService,
     private loginService: UserLoginService,
     private router: Router,
+    private budgetService: BudgetService,
     private fb: FormBuilder) 
     {
     this.createForm = this.fb.group({
@@ -64,7 +67,14 @@ export class CreateAccountComponent implements OnInit {
       password: this.createForm.value.pass
     }
 
+    var budget:Ibudget = {
+      email:this.createForm.value.email,
+      tot_budget:5000,
+      expense:[]
+    }
+
     var msg = this.userService.createUser(temp);
+    this.budgetService.addBudget(budget);
     window.alert(msg);
     console.log(msg);
     this.loginService.addUser(this._loginObj);
